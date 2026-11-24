@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" role="img" aria-label="RGB Projection Lamp to ESPHome">
+  <defs>
+    <radialGradient id="r" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff3b4e" stop-opacity="0.85"/><stop offset="1" stop-color="#ff3b4e" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#2fe08a" stop-opacity="0.8"/><stop offset="1" stop-color="#2fe08a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="b" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#3d7bff" stop-opacity="0.9"/><stop offset="1" stop-color="#3d7bff" stop-opacity="0"/></radialGradient>
+    <clipPath id="c"><rect width="1200" height="340" rx="28"/></clipPath>
+  </defs>
+  <g clip-path="url(#c)">
+    <rect width="1200" height="340" fill="#0b0e14"/>
+    <circle cx="930" cy="90" r="260" fill="url(#r)"/>
+    <circle cx="1090" cy="270" r="250" fill="url(#g)"/>
+    <circle cx="790" cy="300" r="270" fill="url(#b)"/>
+    <rect width="1200" height="340" fill="#0b0e14" opacity="0.25"/>
+  </g>
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" fill="#ffffff">
+    <text x="64" y="118" font-size="22" font-weight="600" letter-spacing="3" fill="#9aa4b2">KMART · ANKO · ESP32-C3</text>
+    <text x="64" y="186" font-size="58" font-weight="700">RGB Projection Lamp</text>
+    <text x="64" y="250" font-size="58" font-weight="700">→ ESPHome</text>
+    <text x="64" y="296" font-size="22" fill="#c9d1d9">IR remote out. Local Wi-Fi control in. Five wires.</text>
+  </g>
+</svg>
