@@ -1,0 +1,58 @@
+name: Validate ESPHome config
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "projection-lamp.yaml"
+      - "secrets.yaml.example"
+      - ".github/workflows/validate.yml"
+  pull_request:
+    paths:
+      - "projection-lamp.yaml"
+      - "secrets.yaml.example"
+      - ".github/workflows/validate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  esphome:
+    name: Validate and compile
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install ESPHome
+        run: pip install esphome
+
+      - name: Show ESPHome version
+        run: esphome version
+
+      # Built from the example file so a secret missing from the example
+      # fails the check. Only the API key placeholder needs a real value.
+      - name: Create throwaway secrets.yaml
+        run: sed "s|REPLACE_WITH_BASE64_KEY|$(openssl rand -base64 32)|" secrets.yaml.example > secrets.yaml
+
+      - name: Validate config
+        run: esphome config projection-lamp.yaml
+
+      - name: Cache PlatformIO toolchain
+        uses: actions/cache@v4
+        with:
+          path: ~/.platformio
+          key: platformio-${{ runner.os }}-${{ hashFiles('projection-lamp.yaml') }}
+          restore-keys: platformio-${{ runner.os }}-
+
+      - name: Compile firmware
+        run: esphome compile projection-lamp.yaml
