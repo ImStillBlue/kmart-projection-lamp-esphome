@@ -1,0 +1,45 @@
+name: Problem
+description: Something in the guide or the config is wrong, unclear, or does not work.
+title: "Problem: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Check the [troubleshooting table](https://github.com/ImStillBlue/kmart-projection-lamp-esphome#troubleshooting) first. Remove Wi-Fi passwords and API keys from anything you paste.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where is the problem?
+      options:
+        - "Hardware / wiring"
+        - "ESPHome config will not validate or compile"
+        - "Flashing or Wi-Fi"
+        - "Behaviour once running (colours, effects, flicker, resets)"
+        - "The guide itself (wrong or unclear)"
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happens
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: ESPHome version
+      description: The output of `esphome version`, or the version shown in ESPHome Device Builder.
+      placeholder: "2026.11.0"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or error output
+      description: Compiler errors or device logs, if there are any.
+      render: text
+  - type: textarea
+    id: changes
+    attributes:
+      label: Changes from the published config
+      description: Anything you changed in `projection-lamp.yaml`, or a different board or pin choice.

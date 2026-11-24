@@ -1,0 +1,52 @@
+name: Board report
+description: Your lamp's board looks different, or you did the mod and want to record how it went.
+title: "Board report: "
+labels: ["board-report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This guide was written from one lamp. Reports from other units show whether the board, wire colours and colour order are the same everywhere.
+  - type: textarea
+    id: photo
+    attributes:
+      label: Photo of the LED board
+      description: A clear, well-lit photo of the round board, straight on. Drag the image into this box.
+    validations:
+      required: true
+  - type: input
+    id: markings
+    attributes:
+      label: Markings printed on the board
+      description: Any numbers or text on the silkscreen. Mine reads `RGB 5V-5050`, `2552` and `3251`.
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: Did the mod work?
+      options:
+        - "Yes, as written"
+        - "Yes, with changes (describe below)"
+        - "No"
+        - "Not attempted yet"
+    validations:
+      required: true
+  - type: dropdown
+    id: polarity
+    attributes:
+      label: Supply wire colours
+      description: Measured with a multimeter, which wire is +5 V?
+      options:
+        - "Black is +5 V, red is ground (same as the guide)"
+        - "Red is +5 V, black is ground"
+        - "Other / not measured"
+  - type: input
+    id: colours
+    attributes:
+      label: Colour order
+      description: Which colour each MOSFET drives on your unit. The guide's unit is Q1 green, Q2 red, Q3 blue.
+      placeholder: "Q1 = , Q2 = , Q3 = "
+  - type: textarea
+    id: notes
+    attributes:
+      label: Differences and notes
+      description: Different parts, a different controller chip, anything that did not match the guide.
