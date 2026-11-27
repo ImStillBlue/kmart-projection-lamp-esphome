@@ -57,7 +57,7 @@ The config compiles on ESPHome 2026.11.0.
 | --- | --- | --- |
 | Control | 24-key IR remote | Home Assistant / ESPHome API over Wi-Fi |
 | Colours | 16 presets | Any RGB colour |
-| Effects | 4 built in | 5 in the config; add your own |
+| Effects | 4 built in | 8 in the config; add your own |
 | Dimming | Remote steps | 14-bit PWM with smooth transitions |
 | Automations | No | Yes |
 | Firmware updates | No | Wireless (OTA) |
@@ -212,10 +212,18 @@ What the config exposes:
 | Effect | What it does |
 | --- | --- |
 | Colour Cycle | Smooth sweep around the colour wheel |
+| Purple Blue Drift | Slow fade through purples and blues |
+| Ocean Drift | Slow fade through blues and aqua |
+| Sunset Drift | Slow fade through orange, pink and purple |
 | Slow Random | Drifts to a new random colour every few seconds |
 | Breathe | Slow pulse of the current colour |
 | Strobe | On/off flash |
 | Candle | Gentle flicker |
+
+To make your own drift, copy one of the `Drift` effects in the YAML, give it a
+new name and change the colours in its `palette` list (0-255 RGB, as many as
+you like). Keep `update_interval` and `set_transition_length` equal so the
+fades run back to back. Shorter values make it faster.
 
 <details>
 <summary><b>Pin mapping and PWM settings</b></summary>

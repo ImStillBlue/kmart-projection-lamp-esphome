@@ -82,6 +82,64 @@ light:
             call.set_publish(false);
             call.set_save(false);
             call.perform();
+      # Palette drifts: each tick starts a fade to the next colour in the
+      # list, lasting as long as the tick, so the colour never stops moving.
+      # Copy one to make your own: change the name, the colours (0-255 RGB)
+      # and keep update_interval and set_transition_length equal.
+      - lambda:
+          name: Purple Blue Drift
+          update_interval: 6s
+          lambda: |-
+            static const Color palette[] = {
+              Color(140, 0, 255),   // purple
+              Color(60, 0, 255),    // indigo
+              Color(0, 40, 255),    // blue
+              Color(90, 0, 255),    // violet
+            };
+            static size_t i = 0;
+            i = (i + 1) % (sizeof(palette) / sizeof(palette[0]));
+            auto call = id(lamp).turn_on();
+            call.set_rgb(palette[i].r / 255.0f, palette[i].g / 255.0f, palette[i].b / 255.0f);
+            call.set_transition_length(6000);
+            call.set_publish(false);
+            call.set_save(false);
+            call.perform();
+      - lambda:
+          name: Ocean Drift
+          update_interval: 5s
+          lambda: |-
+            static const Color palette[] = {
+              Color(0, 30, 255),    // deep blue
+              Color(0, 150, 255),   // sky blue
+              Color(0, 255, 200),   // aqua
+              Color(0, 90, 255),    // azure
+            };
+            static size_t i = 0;
+            i = (i + 1) % (sizeof(palette) / sizeof(palette[0]));
+            auto call = id(lamp).turn_on();
+            call.set_rgb(palette[i].r / 255.0f, palette[i].g / 255.0f, palette[i].b / 255.0f);
+            call.set_transition_length(5000);
+            call.set_publish(false);
+            call.set_save(false);
+            call.perform();
+      - lambda:
+          name: Sunset Drift
+          update_interval: 6s
+          lambda: |-
+            static const Color palette[] = {
+              Color(255, 40, 0),    // orange-red
+              Color(255, 0, 60),    // pink
+              Color(150, 0, 255),   // purple
+              Color(255, 0, 140),   // magenta
+            };
+            static size_t i = 0;
+            i = (i + 1) % (sizeof(palette) / sizeof(palette[0]));
+            auto call = id(lamp).turn_on();
+            call.set_rgb(palette[i].r / 255.0f, palette[i].g / 255.0f, palette[i].b / 255.0f);
+            call.set_transition_length(6000);
+            call.set_publish(false);
+            call.set_save(false);
+            call.perform();
       - random:
           name: Slow Random
           transition_length: 5s
